@@ -35,3 +35,4 @@ To eliminate the classic booking race condition:
 2. **Authorization**: Route-level RBAC middleware enforcing roles (`CUSTOMER`, `HOST`, `ADMIN`).
 3. **Data Sanitization**: Zod runtime schema validation on every inbound JSON payload.
 4. **Rate Limiting**: IP-based rate limiting on sensitive authentication routes (`express-rate-limit`).
+
