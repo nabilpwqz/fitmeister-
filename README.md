@@ -1,4 +1,4 @@
-# FitMeister — Enterprise Full-Stack Fitness & Gym Studio Management Platform
+# FitMeister - Enterprise Full-Stack Fitness & Gym Studio Management Platform
 
 <div align="center">
 
