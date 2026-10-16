@@ -1,27 +1,35 @@
 {
-  "name": "fitmeister-frontend",
+  "name": "fitmeister-monorepo",
+  "version": "2.0.0",
+  "description": "Enterprise Full-Stack Fitness & Gym Studio Management Platform",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
+  "workspaces": [
+    "Backend",
+    "Frontend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev:backend": "npm --prefix Backend run dev",
+    "dev:frontend": "npm --prefix Frontend run dev",
+    "build:backend": "npm --prefix Backend run build",
+    "build:frontend": "npm --prefix Frontend run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "test": "npm --prefix Backend test",
+    "prisma:generate": "npm --prefix Backend run prisma:generate",
+    "prisma:seed": "npm --prefix Backend run prisma:seed",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down"
   },
-  "dependencies": {
-    "@stripe/react-stripe-js": "^6.6.0",
-    "@stripe/stripe-js": "^9.8.0",
-    "axios": "^1.5.0",
-    "framer-motion": "^11.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.15.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.34",
-    "tailwindcss": "^3.4.4",
-    "vite": "^5.4.1"
-  }
+  "keywords": [
+    "fitness",
+    "gym-management",
+    "scheduling",
+    "typescript",
+    "react",
+    "vite",
+    "prisma",
+    "postgresql",
+    "express"
+  ],
+  "author": "S Sindid Ahmed Nabil <nabilpwqz@gmail.com>",
+  "license": "MIT"
 }
