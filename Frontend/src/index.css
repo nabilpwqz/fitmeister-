@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------
+ * Theme Color Design Tokens
+ * ------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+  --bg-app: #0c1015;
+  --bg-card: #141a22;
+  --bg-card-hover: #1b232e;
+  --bg-header: rgba(12, 16, 21, 0.92);
+  --bg-footer: #090d12;
+  --bg-input: #0c1015;
+  --bg-chip: rgba(245, 158, 11, 0.12);
+  --border-color: #222b38;
+  --border-card: #1f2733;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-caption: #64748b;
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+html.light {
+  color-scheme: light;
+  --bg-app: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-header: rgba(255, 255, 255, 0.94);
+  --bg-footer: #edf2f7;
+  --bg-input: #ffffff;
+  --bg-chip: rgba(245, 158, 11, 0.15);
+  --border-color: #e2e8f0;
+  --border-card: #e5e9f0;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-caption: #94a3b8;
+  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* -------------------------------------------------------------
+ * Dynamic Light Mode Adaptation Rules
+ * ------------------------------------------------------------- */
+html.light body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+}
+
+html.light .bg-surface-dark {
+  background-color: var(--bg-app) !important;
+}
+
+html.light .bg-surface-card {
+  background-color: var(--bg-card) !important;
+  box-shadow: var(--shadow-card);
+}
+
+html.light .hover\:bg-surface-cardHover:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+html.light .border-surface-border {
+  border-color: var(--border-color) !important;
+}
+
+html.light .border-surface-border\/60 {
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+html.light .bg-\[\#0c1015\]\/90,
+html.light .bg-\[\#0c1015\] {
+  background-color: var(--bg-header) !important;
+}
+
+html.light .bg-\[\#090d12\] {
+  background-color: var(--bg-footer) !important;
+}
+
+/* -------------------------------------------------------------
+ * Light Mode Button & Action Colors Precision Overrides
+ * ------------------------------------------------------------- */
+
+/* Buttons with bg-surface-dark in light mode get crisp white with distinct border */
+html.light button.bg-surface-dark,
+html.light a.bg-surface-dark {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+html.light button.bg-surface-dark:hover,
+html.light a.bg-surface-dark:hover {
+  background-color: #f8fafc !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+}
+
+/* Primary Amber Buttons */
+button.bg-brand-500,
+a.bg-brand-500,
+html.light button.bg-brand-500,
+html.light a.bg-brand-500 {
+  background-color: #f59e0b !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.25);
+}
+
+button.bg-brand-500:hover,
+a.bg-brand-500:hover,
+html.light button.bg-brand-500:hover,
+html.light a.bg-brand-500:hover {
+  background-color: #d97706 !important;
+  color: #000000 !important;
+  box-shadow: 0 6px 20px 0 rgba(245, 158, 11, 0.35);
+}
+
+/* Solid Colored Action Buttons in Light Mode preserve white text */
+html.light .bg-rose-600,
+html.light .bg-rose-500,
+html.light .bg-red-600,
+html.light .bg-red-500,
+html.light .bg-emerald-600,
+html.light .bg-emerald-500,
+html.light .bg-blue-600,
+html.light .bg-blue-500,
+html.light .bg-slate-900,
+html.light .bg-black {
+  color: #ffffff !important;
+}
+
+/* Pastel Tinted Status Badges in Light Mode */
+html.light .bg-rose-500\/10,
+html.light .bg-rose-500\/15 {
+  background-color: #ffe4e6 !important;
+  color: #be123c !important;
+  border-color: #fecdd3 !important;
+}
+
+html.light .bg-emerald-500\/10,
+html.light .bg-emerald-500\/15 {
+  background-color: #d1fae5 !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/15 {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+
+html.light .bg-blue-500\/10,
+html.light .bg-blue-500\/15 {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+  border-color: #bfdbfe !important;
+}
+
+/* Typography in Light Mode */
+html.light .text-white,
+html.light .text-slate-100 {
+  color: var(--text-primary);
+}
+
+html.light .text-slate-200,
+html.light .text-slate-300 {
+  color: var(--text-secondary);
+}
+
+html.light .text-slate-400 {
+  color: var(--text-muted);
+}
+
+html.light .text-slate-500 {
+  color: var(--text-caption);
+}
+
+/* Form inputs & dropdowns in Light Mode */
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15) !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Chips in Light Mode */
+html.light .bg-brand-950\/70 {
+  background-color: var(--bg-chip) !important;
+}
+
+html.light .border-brand-800 {
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #273344;
+  border-radius: 3px;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Accessible focus outline */
+:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
