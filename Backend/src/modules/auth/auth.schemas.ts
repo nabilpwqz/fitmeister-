@@ -20,3 +20,4 @@ export const loginSchema = z.object({
 export const updateRoleSchema = z.object({
   role: z.enum(['CUSTOMER', 'HOST', 'ADMIN']),
 });
+
