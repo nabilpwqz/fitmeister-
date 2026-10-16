@@ -20,3 +20,4 @@ FitMeister takes security and user privacy seriously. If you discover a security
 
 We will acknowledge receipt within 24 hours and provide a timeline for patch deployment.
 
+
