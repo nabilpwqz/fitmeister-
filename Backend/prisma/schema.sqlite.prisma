@@ -1,0 +1,152 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String         @id @default(uuid())
+  email        String         @unique
+  name         String
+  passwordHash String
+  avatarUrl    String?
+  role         String         @default("CUSTOMER") // CUSTOMER, HOST, ADMIN
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  rooms        Room[]         @relation("HostRooms")
+  bookings     Booking[]
+  reviews      Review[]
+  favorites    Favorite[]
+  notifications Notification[]
+  auditLogs    AuditLog[]
+}
+
+model Room {
+  id                 String              @id @default(uuid())
+  name               String
+  description        String
+  floor              String
+  capacity           Int
+  hourlyRate         Float
+  city               String              @default("Pabna")
+  address            String              @default("Central Library Complex, Campus Row")
+  amenities          String              @default("[]") // JSON string of string array
+  isPublished        Boolean             @default(true)
+  isApproved         Boolean             @default(true)
+  minDurationHours   Int                 @default(1)
+  maxDurationHours   Int                 @default(8)
+  bufferMinutes      Int                 @default(15)
+  ownerId            String
+  owner              User                @relation("HostRooms", fields: [ownerId], references: [id], onDelete: Cascade)
+  images             RoomImage[]
+  operatingHours     OperatingHour[]
+  availabilityBlocks AvailabilityBlock[]
+  bookings           Booking[]
+  reviews            Review[]
+  favorites          Favorite[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+}
+
+model RoomImage {
+  id        String   @id @default(uuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  url       String
+  caption   String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model OperatingHour {
+  id        String   @id @default(uuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  dayOfWeek Int      // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+  openTime  String   // e.g. "08:00"
+  closeTime String   // e.g. "22:00"
+  isOpen    Boolean  @default(true)
+
+  @@unique([roomId, dayOfWeek])
+}
+
+model AvailabilityBlock {
+  id        String   @id @default(uuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  title     String
+  startTime DateTime
+  endTime   DateTime
+  reason    String?
+  createdAt DateTime @default(now())
+}
+
+model Booking {
+  id            String        @id @default(uuid())
+  roomId        String
+  room          Room          @relation(fields: [roomId], references: [id], onDelete: Restrict)
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  date          String        // YYYY-MM-DD
+  startTime     DateTime      // UTC timestamp
+  endTime       DateTime      // UTC timestamp
+  attendeeCount Int           @default(1)
+  totalAmount   Float
+  status        String        @default("CONFIRMED") // CONFIRMED, CANCELLED, COMPLETED, PENDING
+  notes         String?
+  idempotencyKey String?      @unique
+  review        Review?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookingId String   @unique
+  booking   Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  rating    Int      // 1 to 5
+  comment   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, roomId])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  targetType String
+  targetId   String
+  details    String?
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+}
