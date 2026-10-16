@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#0C1015"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="#F59E0B" stroke-width="2" stroke-opacity="0.4"/>
+  <defs>
+    <linearGradient id="brandGrad" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBBF24"/>
+      <stop offset="1" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Dumbbell Icon -->
+  <path d="M14 26C14 24.8954 14.8954 24 16 24H20C21.1046 24 22 24.8954 22 26V38C22 39.1046 21.1046 40 20 40H16C14.8954 40 14 39.1046 14 38V26Z" fill="url(#brandGrad)"/>
+  <path d="M22 28C22 26.8954 22.8954 26 24 26H26V38H24C22.8954 38 22 37.1046 22 36V28Z" fill="url(#brandGrad)" fill-opacity="0.8"/>
+  <rect x="26" y="30" width="12" height="4" rx="2" fill="#FFFFFF"/>
+  <path d="M38 26H40C41.1046 26 42 26.8954 42 28V36C42 37.1046 41.1046 38 40 38H38V26Z" fill="url(#brandGrad)" fill-opacity="0.8"/>
+  <path d="M42 24H46C47.1046 24 48 24.8954 48 26V38C48 39.1046 47.1046 40 46 40H42C42 39.1046 42 38 42 38V26C42 26 42 24.8954 42 24Z" fill="url(#brandGrad)"/>
+</svg>
