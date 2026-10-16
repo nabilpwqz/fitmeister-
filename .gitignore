@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build and Production Artifacts
+dist/
+dist-ssr/
+build/
+/coverage/
+*.tsbuildinfo
+
+# Local Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+!.env.example
+
+# Debugging and Logging
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Database & Storage
+*.sqlite
+*.sqlite-journal
+*.db
+*.db-journal
+postgres_data/
+
+# Editor & System Files
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/
+.idea/
+
+# Tooling artifacts
+vite.config.ts.timestamp*
