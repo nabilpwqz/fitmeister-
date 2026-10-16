@@ -45,3 +45,4 @@ Authorization: Bearer <token>
 
 ### Health
 - `GET /health` - Service health diagnostic probe
+
